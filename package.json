@@ -1,0 +1,12 @@
+{
+  "name": "calendarfuse",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CalendarFuse executive calendar command center and private beta demo",
+  "scripts": {
+    "build": "bash build.sh"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
