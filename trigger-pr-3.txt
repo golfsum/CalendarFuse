@@ -1,1 +1,0 @@
-This commit exists only to trigger the one-time source materialization process.
