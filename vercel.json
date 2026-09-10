@@ -2,6 +2,11 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    {"source": "/favicon.jpg", "destination": "/favicon.svg"},
+    {"source": "/assets/logo.jpg", "destination": "/assets/logo.svg"},
+    {"source": "/assets/logo-light.jpg", "destination": "/assets/logo-light.svg"}
+  ],
   "headers": [
     {
       "source": "/(.*)",
