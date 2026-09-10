@@ -5,7 +5,8 @@
   "rewrites": [
     {"source": "/favicon.jpg", "destination": "/favicon.svg"},
     {"source": "/assets/logo.jpg", "destination": "/assets/logo.svg"},
-    {"source": "/assets/logo-light.jpg", "destination": "/assets/logo-light.svg"}
+    {"source": "/assets/logo-light.jpg", "destination": "/assets/logo-light.svg"},
+    {"source": "/assets/og-image.jpg", "destination": "/assets/og-image.svg"}
   ],
   "headers": [
     {
