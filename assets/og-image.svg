@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f4f1e9"/>
+  <circle cx="1090" cy="20" r="260" fill="#dfe9e5"/><circle cx="40" cy="660" r="250" fill="#efdfd3"/>
+  <g transform="translate(72 66)"><rect width="52" height="48" rx="12" fill="#123f3a"/><path d="M10 16h32v24H10z" fill="#f7f4ed"/><path d="M10 23h32" stroke="#123f3a" stroke-width="3"/><path d="M18 7v13M34 7v13" stroke="#f7f4ed" stroke-width="4" stroke-linecap="round"/><path d="M21 32h11" stroke="#e78555" stroke-width="4" stroke-linecap="round"/></g>
+  <text x="140" y="102" font-family="Inter,Segoe UI,Arial" font-size="34" font-weight="700" letter-spacing="-1.5" fill="#14201f">Calendar<tspan fill="#0d665c">Fuse</tspan></text>
+  <text x="72" y="245" font-family="Inter,Segoe UI,Arial" font-size="66" font-weight="700" letter-spacing="-3" fill="#14201f"><tspan x="72">Every calendar.</tspan><tspan x="72" dy="76">One source of truth.</tspan></text>
+  <text x="75" y="431" font-family="Inter,Segoe UI,Arial" font-size="24" fill="#53615f">Calendar command and cleanup for executives and assistants.</text>
+  <g transform="translate(760 160)"><rect width="365" height="325" rx="20" fill="#fff" stroke="#d6d8d0"/><rect width="365" height="48" rx="20" fill="#143f3a"/><rect x="20" y="72" width="325" height="55" rx="11" fill="#f7f4ed" stroke="#e6e2d9"/><rect x="35" y="87" width="6" height="25" rx="3" fill="#3569a7"/><rect x="55" y="88" width="150" height="10" rx="5" fill="#1b2826"/><rect x="55" y="105" width="90" height="7" rx="4" fill="#a5aeab"/><rect x="20" y="143" width="202" height="158" rx="11" fill="#faf9f5" stroke="#e6e2d9"/><rect x="238" y="143" width="107" height="158" rx="11" fill="#eaf2ef"/><circle cx="291" cy="208" r="31" fill="none" stroke="#d3e2dd" stroke-width="10"/><path d="M291 177a31 31 0 1 1-25 49" fill="none" stroke="#0d665c" stroke-width="10" stroke-linecap="round"/><text x="274" y="216" font-family="Inter,Arial" font-size="19" font-weight="700" fill="#123f3a">82</text></g>
+  <text x="75" y="555" font-family="Inter,Segoe UI,Arial" font-size="19" font-weight="700" fill="#0d665c">calendarfuse.com</text>
+</svg>

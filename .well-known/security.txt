@@ -1,0 +1,5 @@
+Contact: mailto:support@calendarfuse.com
+Expires: 2027-09-10T23:59:59.000Z
+Preferred-Languages: en
+Canonical: https://calendarfuse.com/.well-known/security.txt
+Policy: https://calendarfuse.com/security

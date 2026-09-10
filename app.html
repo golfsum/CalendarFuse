@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CalendarFuse Command Center Demo</title>
+  <meta name="description" content="Explore the CalendarFuse executive calendar command center with duplicate detection, conflict resolution, calendar health, and assistant permissions.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar" id="sidebar" aria-label="Application navigation">
+    <a class="app-brand" href="/" aria-label="CalendarFuse home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="/assets/icons.svg#calendar"/></svg></span>
+      <strong>Calendar<span>Fuse</span></strong>
+    </a>
+    <button class="workspace" type="button" aria-label="Switch workspace">
+      <span class="workspace-avatar">MC</span>
+      <span class="workspace-copy"><strong>Maya Chen</strong><span>Orion Labs · Executive calendar</span></span>
+      <svg><use href="/assets/icons.svg#chevron-down"/></svg>
+    </button>
+
+    <div class="nav-label">Command center</div>
+    <nav class="side-nav">
+      <button class="nav-item active" data-view="overview" type="button"><svg><use href="/assets/icons.svg#grid"/></svg>Overview</button>
+      <button class="nav-item" data-view="duplicates" type="button"><svg><use href="/assets/icons.svg#copy"/></svg>Duplicates <span class="nav-count alert" data-count="duplicates">3</span></button>
+      <button class="nav-item" data-view="conflicts" type="button"><svg><use href="/assets/icons.svg#alert"/></svg>Conflicts <span class="nav-count alert" data-count="conflicts">2</span></button>
+      <button class="nav-item" data-view="calendars" type="button"><svg><use href="/assets/icons.svg#link"/></svg>Calendars</button>
+    </nav>
+    <div class="nav-label">Workspace</div>
+    <nav class="side-nav">
+      <button class="nav-item" data-view="access" type="button"><svg><use href="/assets/icons.svg#users"/></svg>People & access</button>
+      <button class="nav-item" data-view="activity" type="button"><svg><use href="/assets/icons.svg#activity"/></svg>Activity</button>
+      <button class="nav-item" data-modal="settings" type="button"><svg><use href="/assets/icons.svg#settings"/></svg>Settings</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="beta-note"><div class="beta-kicker">Sample workspace</div><p>This guided demo uses fictional calendar data. No account connection is required.</p></div>
+      <div class="side-user"><span class="user-avatar">JB</span><span><strong>Jordan Blake</strong><span>Executive assistant</span></span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Open navigation"><svg><use href="/assets/icons.svg#menu"/></svg></button>
+        <span>Orion Labs</span><svg><use href="/assets/icons.svg#chevron-right"/></svg><strong id="breadcrumbTitle">Overview</strong>
+      </div>
+      <div class="top-actions">
+        <button class="top-btn tour-btn" id="tourButton" type="button"><svg><use href="/assets/icons.svg#play"/></svg>Guided tour</button>
+        <button class="top-btn hide-mobile" data-modal="connect" type="button"><svg><use href="/assets/icons.svg#plus"/></svg>Connect calendar</button>
+        <button class="icon-btn" type="button" aria-label="Notifications"><svg><use href="/assets/icons.svg#bell"/></svg></button>
+        <a class="icon-btn" href="/" aria-label="Return to website"><svg><use href="/assets/icons.svg#external"/></svg></a>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="demo-banner" id="demoBanner">
+        <div class="demo-banner-left"><span class="demo-banner-icon"><svg><use href="/assets/icons.svg#sparkles"/></svg></span><span><strong>Interactive product demo.</strong> Resolve issues, switch views, and test assistant controls using sample data.</span></div>
+        <button id="dismissBanner" type="button">Dismiss</button>
+      </div>
+
+      <section class="view active" data-view-panel="overview">
+        <div class="view-header">
+          <div><h1>Good morning, Jordan</h1><p>Here is what needs attention on Maya's calendar today.</p></div>
+          <div class="view-actions">
+            <div class="date-switcher"><button type="button" aria-label="Previous day"><svg><use href="/assets/icons.svg#chevron-left"/></svg></button><span>Thu, Sep 10</span><button type="button" aria-label="Next day"><svg><use href="/assets/icons.svg#chevron-right"/></svg></button></div>
+            <button class="top-btn primary" data-modal="scan" type="button"><svg><use href="/assets/icons.svg#sparkles"/></svg>Run cleanup scan</button>
+          </div>
+        </div>
+
+        <div class="summary" id="tourSummary">
+          <div class="summary-item"><div class="summary-label"><svg><use href="/assets/icons.svg#calendar"/></svg>Meetings today</div><div class="summary-value"><strong>8</strong><span>across 4 sources</span></div></div>
+          <div class="summary-item warning"><div class="summary-label"><svg><use href="/assets/icons.svg#copy"/></svg>Likely duplicates</div><div class="summary-value"><strong data-count="duplicates">3</strong><span>ready to review</span></div></div>
+          <div class="summary-item warning"><div class="summary-label"><svg><use href="/assets/icons.svg#alert"/></svg>Conflicts</div><div class="summary-value"><strong data-count="conflicts">2</strong><span>one is high priority</span></div></div>
+          <div class="summary-item success"><div class="summary-label"><svg><use href="/assets/icons.svg#shield"/></svg>Sync health</div><div class="summary-value"><strong>99.8%</strong><span>last 24 hours</span></div></div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card" id="tourCalendar">
+            <div class="card-header"><div class="card-title"><span class="title-icon"><svg><use href="/assets/icons.svg#calendar"/></svg></span><span><h2>Unified day</h2><p>One view across every connected source</p></span></div><button class="card-link" data-view-link="calendars" type="button">Manage sources</button></div>
+            <div class="timeline-wrap">
+              <div class="timeline-toolbar"><div class="timeline-tabs"><button class="timeline-tab active" type="button">Day</button><button class="timeline-tab" type="button">Week</button><button class="timeline-tab" type="button">Agenda</button></div><div class="legend"><span class="legend-item"><i class="legend-dot google"></i>Google</span><span class="legend-item"><i class="legend-dot outlook"></i>Outlook</span><span class="legend-item"><i class="legend-dot apple"></i>iCloud</span><span class="legend-item"><i class="legend-dot salesforce"></i>Salesforce</span></div></div>
+              <div class="day-grid">
+                <div class="time-axis"><span class="time-label" style="top:4%">8 AM</span><span class="time-label" style="top:14%">9 AM</span><span class="time-label" style="top:24%">10 AM</span><span class="time-label" style="top:34%">11 AM</span><span class="time-label" style="top:44%">12 PM</span><span class="time-label" style="top:54%">1 PM</span><span class="time-label" style="top:64%">2 PM</span><span class="time-label" style="top:74%">3 PM</span><span class="time-label" style="top:84%">4 PM</span><span class="time-label" style="top:94%">5 PM</span></div>
+                <div class="day-column">
+                  <div class="now-line" style="top:16.5%"></div>
+                  <button class="event google" style="top:3%;height:8%" type="button"><span class="event-time">8:00 – 8:30 AM</span><span class="event-title">Leadership standup</span><span class="event-meta">Google Workspace · Conference room A</span></button>
+                  <button class="event apple private" style="top:12%;height:8%" type="button"><span class="event-time">9:00 – 9:30 AM</span><span class="event-title">Private appointment</span><span class="event-meta"><svg><use href="/assets/icons.svg#lock"/></svg>Details hidden from assistants</span></button>
+                  <button class="event salesforce" style="top:22%;height:12%" type="button"><span class="event-time">10:00 – 11:00 AM</span><span class="event-title">Acme quarterly review</span><span class="event-meta">3 linked records · $420K opportunity</span></button>
+                  <button class="event outlook conflict" style="top:37%;height:10%" type="button"><span class="event-time">11:30 – 12:15 PM</span><span class="event-title">Product review</span><span class="event-meta">Microsoft 365</span></button>
+                  <button class="event google conflict-pair" style="top:41%;height:8%" type="button"><span class="event-time">11:50 – 12:30 PM</span><span class="event-title">Investor prep</span><span class="event-meta">Google Workspace</span></button>
+                  <button class="event google" style="top:52%;height:8%" type="button"><span class="event-time">1:00 – 1:30 PM</span><span class="event-title">Board packet review</span><span class="event-meta">Google Workspace · 4 documents</span></button>
+                  <button class="event outlook" style="top:64%;height:10%" type="button"><span class="event-time">2:15 – 3:00 PM</span><span class="event-title">VP Engineering candidate</span><span class="event-meta">Microsoft 365 · Zoom</span></button>
+                  <button class="event apple" style="top:78%;height:9%" type="button"><span class="event-time">3:45 – 4:30 PM</span><span class="event-title">Focus block</span><span class="event-meta">iCloud · Protected time</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="side-stack">
+            <div class="card" id="tourHealth">
+              <div class="card-header"><div class="card-title"><span class="title-icon"><svg><use href="/assets/icons.svg#activity"/></svg></span><span><h2>Calendar health</h2><p>Next 90 days</p></span></div><button class="card-link" data-modal="scan" type="button">Details</button></div>
+              <div class="health-wrap">
+                <div class="health-ring"><svg viewBox="0 0 110 110"><circle class="health-track" cx="55" cy="55" r="46"/><circle class="health-progress" id="healthProgress" cx="55" cy="55" r="46"/></svg><div class="health-number"><strong id="healthScore">82</strong><span>Healthy</span></div></div>
+                <div class="health-list"><div class="health-row"><span class="health-row-left"><i class="health-status"></i><strong>Google Workspace</strong></span><span>2 min ago</span></div><div class="health-row"><span class="health-row-left"><i class="health-status"></i><strong>Microsoft 365</strong></span><span>4 min ago</span></div><div class="health-row"><span class="health-row-left"><i class="health-status warn"></i><strong>iCloud</strong></span><span>18 min ago</span></div><div class="health-row"><span class="health-row-left"><i class="health-status"></i><strong>Salesforce</strong></span><span>5 min ago</span></div></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header"><div class="card-title"><span class="title-icon warning"><svg><use href="/assets/icons.svg#alert"/></svg></span><span><h2>Needs attention</h2><p>Highest impact first</p></span></div></div>
+              <div class="attention-list"><div class="attention-item"><div class="attention-top"><span class="attention-type">Duplicate</span><span class="issue-score">96% match</span></div><h3>Acme quarterly review</h3><p>Appears on Google, Outlook, and Salesforce.</p><button class="attention-action" data-view-link="duplicates" type="button">Review duplicate →</button></div><div class="attention-item"><div class="attention-top"><span class="attention-type">Conflict</span></div><h3>Product review overlaps investor prep</h3><p>20-minute overlap, both marked required.</p><button class="attention-action" data-view-link="conflicts" type="button">Resolve conflict →</button></div></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header"><div class="card-title"><span class="title-icon blue"><svg><use href="/assets/icons.svg#clock"/></svg></span><span><h2>Coming up</h2><p>Meeting context</p></span></div></div>
+              <div class="upcoming-list"><div class="upcoming"><span class="up-time">10:00</span><span><strong>Acme quarterly review</strong><span>John Smith + 5 attendees</span><span class="source-mini">Salesforce context ready</span></span></div><div class="upcoming"><span class="up-time">11:30</span><span><strong>Product review</strong><span>Deck updated 12 minutes ago</span></span></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="duplicates">
+        <div class="view-header"><div><h1>Duplicate review</h1><p>CalendarFuse groups likely copies without deleting the originals.</p></div><div class="view-actions"><button class="top-btn" type="button"><svg><use href="/assets/icons.svg#refresh"/></svg>Rescan</button><button class="top-btn primary resolve-all" type="button">Resolve high confidence</button></div></div>
+        <div class="filterbar"><div class="filters"><button class="filter active" type="button">Needs review · <span data-count="duplicates">3</span></button><button class="filter" type="button">Resolved</button><button class="filter" type="button">Ignored</button></div><label class="search"><svg><use href="/assets/icons.svg#search"/></svg><input type="search" placeholder="Search events" aria-label="Search duplicate events"></label></div>
+        <div class="list-layout" id="tourDedupe">
+          <div class="issue-list" id="duplicateList">
+            <button class="issue-item active" type="button" data-duplicate="acme"><div class="issue-head"><span class="issue-badge">3 possible copies</span><span class="issue-score">96% match</span></div><h3>Acme quarterly review</h3><p>Thu, Sep 10 · 10:00–11:00 AM</p><div class="issue-sources"><span class="provider-chip"><i class="provider-dot google"></i>Google</span><span class="provider-chip"><i class="provider-dot outlook"></i>Outlook</span><span class="provider-chip"><i class="provider-dot salesforce"></i>Salesforce</span></div></button>
+            <button class="issue-item" type="button" data-duplicate="board"><div class="issue-head"><span class="issue-badge">2 possible copies</span><span class="issue-score">91% match</span></div><h3>Board packet review</h3><p>Thu, Sep 10 · 1:00–1:30 PM</p><div class="issue-sources"><span class="provider-chip"><i class="provider-dot google"></i>Google</span><span class="provider-chip"><i class="provider-dot outlook"></i>Outlook</span></div></button>
+            <button class="issue-item" type="button" data-duplicate="planning"><div class="issue-head"><span class="issue-badge">2 possible copies</span><span class="issue-score">84% match</span></div><h3>FY27 planning kickoff</h3><p>Mon, Sep 14 · 9:00–10:30 AM</p><div class="issue-sources"><span class="provider-chip"><i class="provider-dot google"></i>Google</span><span class="provider-chip"><i class="provider-dot apple"></i>iCloud</span></div></button>
+          </div>
+          <article class="card detail-card" id="duplicateDetail">
+            <div class="card-header"><div class="card-title"><span class="title-icon"><svg><use href="/assets/icons.svg#copy"/></svg></span><span><h2>Merge preview</h2><p>No source event is deleted</p></span></div><button class="icon-btn" type="button" aria-label="More options"><svg><use href="/assets/icons.svg#settings"/></svg></button></div>
+            <div class="detail-body"><div class="detail-kicker"><span>Likely duplicate group</span><span class="confidence">96% confidence</span></div><h2 id="detailTitle">Acme quarterly review</h2><p id="detailMeta">Thursday, September 10 · 10:00–11:00 AM</p>
+              <div class="source-records" id="sourceRecords"><label class="source-record"><span class="provider-icon google">G</span><span><strong>Acme Quarterly Review</strong><span>Google Workspace · Maya Chen</span></span><input class="record-radio" type="radio" name="canonical" checked aria-label="Use Google as canonical source"></label><label class="source-record"><span class="provider-icon outlook">O</span><span><strong>Acme QBR</strong><span>Microsoft 365 · Maya Chen</span></span><input class="record-radio" type="radio" name="canonical" aria-label="Use Outlook as canonical source"></label><label class="source-record"><span class="provider-icon salesforce">SF</span><span><strong>Acme Corp Quarterly Business Review</strong><span>Salesforce · Opportunity event</span></span><input class="record-radio" type="radio" name="canonical" aria-label="Use Salesforce as canonical source"></label></div>
+              <div class="canonical-box"><div class="canonical-box-label"><svg width="12" height="12"><use href="/assets/icons.svg#sparkles"/></svg>Canonical event preview</div><h3>Acme quarterly review</h3><p>Attendees and conferencing from Google. CRM context stays linked from Salesforce. Outlook remains blocked without another copy.</p></div>
+              <div class="detail-actions"><button class="small-btn primary" id="mergeButton" type="button"><svg><use href="/assets/icons.svg#link"/></svg>Confirm merge</button><button class="small-btn" id="notDuplicate" type="button">Not a duplicate</button></div><p class="explain">CalendarFuse creates one internal event identity and remembers the original source IDs. That prevents sync loops while preserving provider history.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="conflicts">
+        <div class="view-header"><div><h1>Conflict center</h1><p>Resolve overlaps with priority, travel time, and executive preferences in view.</p></div><div class="view-actions"><button class="top-btn" type="button">View policy</button><button class="top-btn primary" data-modal="settings" type="button">Edit scheduling rules</button></div></div>
+        <div class="conflict-grid" id="conflictList">
+          <article class="conflict-card" id="tourConflict"><div class="conflict-event"><div class="conflict-time">11:30 AM – 12:15 PM · Outlook</div><h3>Product review</h3><p>Required · 8 attendees · Conference room A</p><div class="issue-sources" style="margin-top:10px"><span class="provider-chip"><i class="provider-dot outlook"></i>Microsoft 365</span><span class="provider-chip">Priority: high</span></div></div><div class="conflict-gap"><span><svg><use href="/assets/icons.svg#alert"/></svg>20 min<br>overlap</span></div><div class="conflict-event"><div class="conflict-time">11:50 AM – 12:30 PM · Google</div><h3>Investor prep</h3><p>Required · 3 attendees · Zoom</p><div class="issue-sources" style="margin-top:10px"><span class="provider-chip"><i class="provider-dot google"></i>Google Workspace</span><span class="provider-chip">External guests</span></div></div><div class="conflict-actions"><button class="small-btn primary conflict-resolve" type="button" data-action="move">Move product review</button><button class="small-btn conflict-resolve" type="button" data-action="buffer">Shorten + add buffer</button></div></article>
+          <article class="conflict-card"><div class="conflict-event"><div class="conflict-time">Tue, Sep 15 · 2:00–3:00 PM</div><h3>Leadership offsite prep</h3><p>Google Workspace · 6 attendees</p></div><div class="conflict-gap"><span><svg><use href="/assets/icons.svg#clock"/></svg>0 min<br>travel</span></div><div class="conflict-event"><div class="conflict-time">Tue, Sep 15 · 3:00–4:00 PM</div><h3>Partner dinner travel</h3><p>iCloud · 28 minutes away</p></div><div class="conflict-actions"><button class="small-btn primary conflict-resolve" type="button" data-action="travel">Add travel buffer</button><button class="small-btn conflict-resolve" type="button" data-action="ignore">Keep as is</button></div></article>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="calendars">
+        <div class="view-header"><div><h1>Connected calendars</h1><p>Visibility, edit authority, privacy, and sync health in one place.</p></div><div class="view-actions"><button class="top-btn primary" data-modal="connect" type="button"><svg><use href="/assets/icons.svg#plus"/></svg>Connect calendar</button></div></div>
+        <div class="providers-grid" id="tourProviders">
+          <article class="provider-card"><div class="provider-card-head"><div class="provider-main"><span class="provider-icon google">G</span><span><h3>Google Workspace</h3><p>maya@orionlabs.com</p></span></div><span class="connection">Connected</span></div><div class="provider-stats"><div class="provider-stat"><span>Calendars</span><strong>4</strong></div><div class="provider-stat"><span>Events indexed</span><strong>1,842</strong></div><div class="provider-stat"><span>Authority</span><strong>Primary</strong></div></div><div class="provider-footer"><span class="last-sync">Last sync 2 minutes ago</span><button class="small-btn" type="button">Manage</button></div></article>
+          <article class="provider-card"><div class="provider-card-head"><div class="provider-main"><span class="provider-icon outlook">O</span><span><h3>Microsoft 365</h3><p>mchen@orionlabs.com</p></span></div><span class="connection">Connected</span></div><div class="provider-stats"><div class="provider-stat"><span>Calendars</span><strong>2</strong></div><div class="provider-stat"><span>Events indexed</span><strong>926</strong></div><div class="provider-stat"><span>Authority</span><strong>Mirror</strong></div></div><div class="provider-footer"><span class="last-sync">Last sync 4 minutes ago</span><button class="small-btn" type="button">Manage</button></div></article>
+          <article class="provider-card"><div class="provider-card-head"><div class="provider-main"><span class="provider-icon apple">A</span><span><h3>Apple Calendar</h3><p>Personal iCloud calendar</p></span></div><span class="connection pending">Attention</span></div><div class="provider-stats"><div class="provider-stat"><span>Calendars</span><strong>3</strong></div><div class="provider-stat"><span>Events indexed</span><strong>412</strong></div><div class="provider-stat"><span>Privacy</span><strong>Busy only</strong></div></div><div class="provider-footer"><span class="last-sync">Last sync 18 minutes ago</span><button class="small-btn" type="button">Review</button></div></article>
+          <article class="provider-card"><div class="provider-card-head"><div class="provider-main"><span class="provider-icon salesforce">SF</span><span><h3>Salesforce</h3><p>Orion Labs production org</p></span></div><span class="connection">Connected</span></div><div class="provider-stats"><div class="provider-stat"><span>Linked meetings</span><strong>128</strong></div><div class="provider-stat"><span>Open opportunities</span><strong>17</strong></div><div class="provider-stat"><span>Authority</span><strong>Context</strong></div></div><div class="provider-footer"><span class="last-sync">Last sync 5 minutes ago</span><button class="small-btn" type="button">Manage</button></div></article>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="access">
+        <div class="view-header"><div><h1>People and access</h1><p>Give assistants the control they need without exposing everything.</p></div><div class="view-actions"><button class="top-btn primary" type="button"><svg><use href="/assets/icons.svg#plus"/></svg>Invite person</button></div></div>
+        <div class="access-grid" id="tourAccess">
+          <div class="card"><div class="card-header"><div class="card-title"><span class="title-icon"><svg><use href="/assets/icons.svg#users"/></svg></span><span><h2>Workspace members</h2><p>2 active people</p></span></div></div><div class="people-list"><div class="person-row"><span class="person-avatar executive">MC</span><span><h3>Maya Chen</h3><p>maya@orionlabs.com · Calendar owner</p></span><span class="role-pill">Executive</span></div><div class="person-row"><span class="person-avatar">JB</span><span><h3>Jordan Blake</h3><p>jordan@orionlabs.com · Full scheduling access</p></span><span class="role-pill">Executive assistant</span></div></div><div class="permissions"><h3>Jordan's permissions</h3><p>Changes are logged and can be revoked at any time.</p><div class="permission-row"><span><strong>Create and edit meetings</strong><span>Across Google and Microsoft calendars</span></span><button class="toggle on" type="button" aria-label="Toggle create and edit meetings"></button></div><div class="permission-row"><span><strong>Resolve duplicates and conflicts</strong><span>Apply changes to canonical events</span></span><button class="toggle on" type="button" aria-label="Toggle duplicate resolution"></button></div><div class="permission-row"><span><strong>View private event details</strong><span>Currently shows only busy status</span></span><button class="toggle" type="button" aria-label="Toggle private event visibility"></button></div><div class="permission-row"><span><strong>Manage calendar connections</strong><span>Reconnect and change source authority</span></span><button class="toggle on" type="button" aria-label="Toggle connection management"></button></div></div></div>
+          <div class="card"><div class="card-header"><div class="card-title"><span class="title-icon blue"><svg><use href="/assets/icons.svg#activity"/></svg></span><span><h2>Recent access activity</h2><p>Immutable workspace trail</p></span></div></div><div class="audit-list"><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#edit"/></svg></span><span><strong>Jordan moved Product review</strong><p>Changed from 11:30 AM to 12:45 PM</p><time>Today, 8:42 AM</time></span></div><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#link"/></svg></span><span><strong>CalendarFuse linked Salesforce context</strong><p>Acme opportunity attached to the quarterly review</p><time>Today, 8:31 AM</time></span></div><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#shield"/></svg></span><span><strong>Maya confirmed private-event policy</strong><p>Assistants see availability without details</p><time>Yesterday, 4:16 PM</time></span></div></div></div>
+        </div>
+      </section>
+
+      <section class="view" data-view-panel="activity">
+        <div class="view-header"><div><h1>Activity</h1><p>A clear record of automated and human calendar changes.</p></div><div class="view-actions"><button class="top-btn" type="button">Export CSV</button></div></div>
+        <div class="card"><div class="card-header"><div class="card-title"><span class="title-icon"><svg><use href="/assets/icons.svg#activity"/></svg></span><span><h2>Workspace history</h2><p>All providers and people</p></span></div></div><div class="audit-list"><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#refresh"/></svg></span><span><strong>Calendar health scan completed</strong><p>2,481 events checked; 3 duplicates and 2 conflicts found.</p><time>Today, 8:48 AM · CalendarFuse</time></span></div><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#edit"/></svg></span><span><strong>Product review rescheduled</strong><p>Moved from 11:30 AM to 12:45 PM in Microsoft 365.</p><time>Today, 8:42 AM · Jordan Blake</time></span></div><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#link"/></svg></span><span><strong>Salesforce context linked</strong><p>Acme opportunity, account owner, and recent activity attached.</p><time>Today, 8:31 AM · CalendarFuse</time></span></div><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#clock"/></svg></span><span><strong>Travel buffer created</strong><p>30-minute buffer added before partner dinner.</p><time>Yesterday, 4:55 PM · Jordan Blake</time></span></div><div class="audit-item"><span class="audit-icon"><svg><use href="/assets/icons.svg#shield"/></svg></span><span><strong>Private event visibility changed</strong><p>Assistants now see busy status only.</p><time>Yesterday, 4:16 PM · Maya Chen</time></span></div></div></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div class="modal" id="connectModal" role="dialog" aria-modal="true" aria-labelledby="connectTitle"><div class="modal-panel"><div class="modal-head"><h2 id="connectTitle">Connect a calendar source</h2><button class="modal-close" type="button" aria-label="Close"><svg><use href="/assets/icons.svg#x"/></svg></button></div><div class="modal-body"><p>In production, each connection opens the provider's secure authorization flow. This demo does not request account access.</p><div class="connect-list"><div class="connect-row"><span class="provider-icon google">G</span><span class="connect-copy"><strong>Google Workspace</strong><span>Calendar events, availability, and delegated access</span></span><button class="small-btn demo-connect" type="button">Connect</button></div><div class="connect-row"><span class="provider-icon outlook">O</span><span class="connect-copy"><strong>Microsoft 365</strong><span>Outlook calendars through Microsoft Graph</span></span><button class="small-btn demo-connect" type="button">Connect</button></div><div class="connect-row"><span class="provider-icon apple">A</span><span class="connect-copy"><strong>Apple Calendar</strong><span>iCloud calendars through CalDAV</span></span><button class="small-btn demo-connect" type="button">Connect</button></div><div class="connect-row"><span class="provider-icon salesforce">SF</span><span class="connect-copy"><strong>Salesforce</strong><span>CRM events, contacts, accounts, and opportunities</span></span><button class="small-btn demo-connect" type="button">Connect</button></div></div></div><div class="modal-foot"><button class="small-btn modal-close" type="button">Close</button></div></div></div>
+
+<div class="modal" id="scanModal" role="dialog" aria-modal="true" aria-labelledby="scanTitle"><div class="modal-panel"><div class="modal-head"><h2 id="scanTitle">Calendar health scan</h2><button class="modal-close" type="button" aria-label="Close"><svg><use href="/assets/icons.svg#x"/></svg></button></div><div class="modal-body"><p>CalendarFuse checks event fingerprints, recurrence rules, attendee lists, time zones, permissions, and provider sync state.</p><div class="canonical-box"><div class="canonical-box-label"><svg width="12" height="12"><use href="/assets/icons.svg#sparkles"/></svg>Latest sample scan</div><h3>2,481 events reviewed</h3><p>3 likely duplicate groups, 2 scheduling conflicts, 1 delayed connection, and 7 stale recurring meetings.</p></div></div><div class="modal-foot"><button class="small-btn modal-close" type="button">Cancel</button><button class="small-btn primary run-scan" type="button">Run scan</button></div></div></div>
+
+<div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><div class="modal-panel"><div class="modal-head"><h2 id="settingsTitle">Scheduling rules</h2><button class="modal-close" type="button" aria-label="Close"><svg><use href="/assets/icons.svg#x"/></svg></button></div><div class="modal-body"><div class="permission-row"><span><strong>Require 15-minute meeting buffers</strong><span>Except back-to-back internal meetings</span></span><button class="toggle on" type="button"></button></div><div class="permission-row"><span><strong>Protect focus blocks</strong><span>External meetings require assistant approval</span></span><button class="toggle on" type="button"></button></div><div class="permission-row"><span><strong>Prefer Google as canonical source</strong><span>Unless an event is owned by Salesforce</span></span><button class="toggle on" type="button"></button></div></div><div class="modal-foot"><button class="small-btn modal-close" type="button">Cancel</button><button class="small-btn primary save-settings" type="button">Save rules</button></div></div></div>
+
+<div class="tour-welcome" id="tourWelcome" role="dialog" aria-modal="true" aria-labelledby="tourTitle"><div class="tour-welcome-card"><span class="voice-orb"><svg><use href="/assets/icons.svg#mic"/></svg></span><h2 id="tourTitle">Meet your calendar command center</h2><p>This is a short, interactive tour of CalendarFuse. Narration uses the most natural voice available in your browser, with on-screen captions throughout.</p><div class="voice-select"><label for="voiceSelect">Narration voice</label><select id="voiceSelect"><option>Finding available voices…</option></select></div><div class="tour-actions"><button class="top-btn" id="skipVoice" type="button">Captions only</button><button class="top-btn primary" id="startTour" type="button"><svg><use href="/assets/icons.svg#play"/></svg>Start guided tour</button></div></div></div>
+
+<div class="tour-controls" id="tourControls" aria-live="polite"><div class="tour-progress"><span id="tourProgress"></span></div><div class="tour-content"><span class="tour-speaker"><svg><use href="/assets/icons.svg#volume"/></svg></span><div class="tour-copy"><span id="tourStepLabel">Step 1 of 5</span><p id="tourCaption">CalendarFuse starts with a unified view of the executive's day.</p></div></div><div class="tour-footer"><div class="tour-footer-left"><button id="tourReplay" type="button" aria-label="Replay narration"><svg><use href="/assets/icons.svg#volume"/></svg></button><button id="tourStop" type="button" aria-label="End tour"><svg><use href="/assets/icons.svg#x"/></svg></button></div><button class="tour-next" id="tourNext" type="button">Next <svg><use href="/assets/icons.svg#chevron-right"/></svg></button></div></div>
+
+<div class="toast" id="toast"><span class="toast-icon"><svg><use href="/assets/icons.svg#check"/></svg></span><span id="toastText">Saved.</span></div>
+<script src="/app.js" defer></script>
+</body>
+</html>
