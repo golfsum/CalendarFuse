@@ -6,6 +6,15 @@
   const menuButton = $('#menuButton');
   const siteNav = $('#siteNav');
 
+  $$('.nav-actions').forEach((group) => {
+    if (group.querySelector('a[href="/login"]')) return;
+    const signIn = document.createElement('a');
+    signIn.className = 'button button-secondary';
+    signIn.href = '/login';
+    signIn.textContent = 'Sign in';
+    group.insertBefore(signIn, group.firstChild);
+  });
+
   function closeMenu() {
     siteNav?.classList.remove('open');
     document.body.classList.remove('menu-open');
