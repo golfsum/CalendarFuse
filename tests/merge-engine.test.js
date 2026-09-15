@@ -1,0 +1,7 @@
+const test=require('node:test');const assert=require('node:assert/strict');const {classifyCandidate,buildCanonical}=require('../lib/merge-engine');
+const google={provider:'google',id:'g1',title:'Acme Quarterly Review',start:'2026-09-15T17:00:00Z',end:'2026-09-15T18:00:00Z',organizer:'maya@example.com',attendees:['maya@example.com','jordan@example.com'],meetingUrl:'https://meet.google.com/abc'};
+const outlook={provider:'microsoft',id:'m1',title:'Acme Q3 Quarterly Review',start:'2026-09-15T17:00:00Z',end:'2026-09-15T18:00:00Z',organizer:'maya@example.com',attendees:['maya@example.com','jordan@example.com'],meetingUrl:'https://meet.google.com/abc'};
+const unrelated={provider:'google',id:'g2',title:'Dentist appointment',start:'2026-09-15T21:00:00Z',end:'2026-09-15T22:00:00Z',organizer:'noel@example.com',attendees:['noel@example.com']};
+test('flags high confidence provider copies as likely duplicates',()=>{const result=classifyCandidate(google,outlook);assert.equal(result.classification,'likely_duplicate');assert.ok(result.score>=85);});
+test('keeps unrelated events distinct',()=>{const result=classifyCandidate(google,unrelated);assert.equal(result.classification,'distinct');assert.ok(result.score<65);});
+test('builds canonical event without deleting source records',()=>{const canonical=buildCanonical(google,[outlook]);assert.equal(canonical.sourceRecords.length,2);assert.equal(canonical.sourceRecords[0].provider,'google');assert.equal(canonical.sourceRecords[1].provider,'microsoft');});
