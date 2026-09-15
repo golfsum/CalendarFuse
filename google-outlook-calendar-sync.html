@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Calendar and Outlook Sync: Avoid Duplicate Events | CalendarFuse</title>
+  <meta name="description" content="Understand Google Calendar and Outlook sync, why duplicate meetings happen, and how to manage a single source of truth across Microsoft 365 and Google Workspace.">
+  <link rel="canonical" href="https://calendarfuse.com/google-outlook-calendar-sync"><link rel="stylesheet" href="/styles.css"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Google Calendar and Outlook Sync Guide","description":"How to manage Google Workspace and Microsoft 365 calendars without duplicate-event confusion.","author":{"@type":"Organization","name":"CalendarFuse"},"publisher":{"@type":"Organization","name":"CalendarFuse"},"mainEntityOfPage":"https://calendarfuse.com/google-outlook-calendar-sync"}</script>
+  <style>.article{max-width:850px;margin:auto;padding:80px 22px}.article h1{font-size:clamp(2.5rem,6vw,4.6rem);line-height:1.02}.article h2{margin-top:48px;font-size:1.8rem}.article p,.article li{font-size:1.06rem;line-height:1.75;color:#41524e}.article .lede{font-size:1.25rem}.callout{background:#eef6f3;border:1px solid #d8e9e4;padding:22px;border-radius:14px;margin:32px 0}.article a{color:#1e665a}</style>
+</head>
+<body>
+<header class="site-header"><div class="container nav-wrap"><a class="brand" href="/"><img src="/assets/logo.svg" alt="CalendarFuse" width="228" height="48"></a><nav class="site-nav open"><a href="/">Product</a><a href="/resources">Resources</a><a href="/security">Security</a><span class="nav-actions"><a class="button button-primary" href="/app">Open demo</a></span></nav></div></header>
+<main class="article"><p class="eyebrow">Google + Microsoft calendars</p><h1>Google Calendar and Outlook sync without duplicate-event chaos</h1><p class="lede">Syncing Google Workspace and Microsoft 365 can make availability easier to see, but simple copy-based synchronization can create a second problem: nobody knows which event is the real one.</p>
+<h2>What calendar sync usually does well</h2><p>Basic sync is useful for showing busy time across accounts and reducing accidental double booking. It can be enough when the goal is simply “block my work calendar when my personal calendar is busy.”</p>
+<h2>Where two-way sync gets complicated</h2><p>Problems appear when both systems can edit the same logical meeting. An Outlook copy changes, Google updates, a sync service sees the Google change and writes back to Outlook, or an assistant edits the wrong copy. Attendees, descriptions, conferencing links, and recurrence exceptions can drift apart.</p>
+<h2>Define ownership before synchronization</h2><p>For every logical meeting, decide which provider owns the authoritative record. Other systems can expose availability or linked context without pretending every copy has equal authority.</p>
+<div class="callout"><strong>Useful distinction:</strong> synchronization answers “where should this meeting be visible?” Ownership answers “which record is allowed to define the meeting?”</div>
+<h2>Use provider IDs and revisions</h2><p>A production sync system should retain provider event IDs, revision or ETag information, the last observed payload hash, and the origin of the most recent mutation. Those details make it possible to prevent Google → Outlook → Google update loops.</p>
+<h2>Normalize time zones before comparing events</h2><p>The same event can appear different when providers store or display time zones differently. Compare normalized instants while retaining the original event time-zone context, especially around daylight-saving transitions and recurring meetings.</p>
+<h2>Do not assume Salesforce or CRM events are copies</h2><p>A CRM event may own the meeting, may simply provide account context, or may be a separate activity record. Treating CRM records as calendar copies without configuration can create bad matches and unsafe edits.</p>
+<h2>A better model than blind mirroring</h2><p>CalendarFuse is designed around one canonical event with linked Google, Microsoft, Apple, or CRM records. That allows a user to see the relationship between records without hiding which source owns the meeting. Read the <a href="/calendar-deduplication">calendar deduplication guide</a> or <a href="/app?tour=1">view the guided demo</a>.</p>
+<p><a href="/resources">← Back to resources</a></p></main>
+<footer class="site-footer"><div class="container"><p>CalendarFuse is operated by ND SOFT LLC. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/support">Support</a></p></div></footer><script src="/site.js"></script>
+</body></html>
