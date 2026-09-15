@@ -6,6 +6,15 @@
   const menuButton = $('#menuButton');
   const siteNav = $('#siteNav');
 
+  if (siteNav && !siteNav.querySelector('a[href="/resources"]')) {
+    const resources = document.createElement('a');
+    resources.href = '/resources';
+    resources.textContent = 'Resources';
+    const security = siteNav.querySelector('a[href="/security"]');
+    if (security) siteNav.insertBefore(resources, security);
+    else siteNav.appendChild(resources);
+  }
+
   $$('.nav-actions').forEach((group) => {
     if (group.querySelector('a[href="/login"]')) return;
     const signIn = document.createElement('a');
