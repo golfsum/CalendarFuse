@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in | CalendarFuse</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.jpg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .auth-shell{min-height:100vh;display:grid;place-items:center;padding:40px 20px;background:#f4f7f6}.auth-card{width:min(460px,100%);background:#fff;border:1px solid #dfe8e5;border-radius:20px;padding:34px;box-shadow:0 18px 50px rgba(18,63,58,.08)}.auth-card img{width:190px;height:auto}.auth-card h1{margin:28px 0 8px}.auth-card p{color:#5e6e6a}.auth-tabs{display:flex;gap:8px;margin:24px 0}.auth-tab{flex:1;padding:10px;border:1px solid #d5e1de;background:#fff;border-radius:10px;cursor:pointer}.auth-tab.active{background:#123f3a;color:#fff}.auth-field{display:grid;gap:7px;margin:14px 0}.auth-field input{padding:13px 14px;border:1px solid #cad8d4;border-radius:10px;font:inherit}.auth-submit,.google-button{width:100%;justify-content:center;margin-top:10px}.auth-divider{text-align:center;color:#81908c;margin:18px 0}.auth-message{min-height:22px;margin-top:14px;color:#9d2a2a}.auth-back{display:block;text-align:center;margin-top:22px;color:#355e58}
+  </style>
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-card">
+      <a href="/"><img src="/assets/logo.svg" alt="CalendarFuse"></a>
+      <h1>Welcome to CalendarFuse</h1>
+      <p>Sign in to your workspace or create an account to start connecting your calendar operations.</p>
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="signInTab" type="button">Sign in</button>
+        <button class="auth-tab" id="signUpTab" type="button">Create account</button>
+      </div>
+      <form id="authForm">
+        <label class="auth-field">Email<input id="email" type="email" autocomplete="email" required></label>
+        <label class="auth-field">Password<input id="password" type="password" autocomplete="current-password" minlength="6" required></label>
+        <button class="button button-primary auth-submit" id="submitButton" type="submit">Sign in</button>
+      </form>
+      <div class="auth-divider">or</div>
+      <button class="button button-secondary google-button" id="googleButton" type="button">Continue with Google</button>
+      <p class="auth-message" id="message" aria-live="polite"></p>
+      <a class="auth-back" href="/">Back to CalendarFuse</a>
+    </section>
+  </main>
+  <script type="module">
+    import { signInEmail, signUpEmail, signInGoogle, waitForUser } from '/auth.js';
+    const form=document.getElementById('authForm');const message=document.getElementById('message');const submit=document.getElementById('submitButton');const signInTab=document.getElementById('signInTab');const signUpTab=document.getElementById('signUpTab');let mode='signin';
+    const next=()=>{const params=new URLSearchParams(location.search);const value=params.get('next');return value&&value.startsWith('/')?value:'/account'};
+    try{const current=await waitForUser();if(current) location.replace(next());}catch(error){message.textContent=error.message;}
+    function setMode(value){mode=value;const signup=value==='signup';signInTab.classList.toggle('active',!signup);signUpTab.classList.toggle('active',signup);submit.textContent=signup?'Create account':'Sign in';document.getElementById('password').autocomplete=signup?'new-password':'current-password';message.textContent='';}
+    signInTab.onclick=()=>setMode('signin');signUpTab.onclick=()=>setMode('signup');
+    form.addEventListener('submit',async e=>{e.preventDefault();message.textContent='';submit.disabled=true;try{const email=document.getElementById('email').value.trim();const password=document.getElementById('password').value;if(mode==='signup') await signUpEmail(email,password); else await signInEmail(email,password);location.replace(next());}catch(error){message.textContent=error.message.replace('Firebase: ','');}finally{submit.disabled=false;}});
+    document.getElementById('googleButton').onclick=async()=>{message.textContent='';try{await signInGoogle();location.replace(next());}catch(error){message.textContent=error.message.replace('Firebase: ','');}};
+  </script>
+</body>
+</html>
